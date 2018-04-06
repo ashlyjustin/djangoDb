@@ -29,17 +29,10 @@ document.getElementById('count').innerHTML=0;
 document.getElementById('myInput').style.display='none';
 btn.addEventListener('click',function() {
 
-		var xhttp = new XMLHttpRequest();
-
-		xhttp.open('GET',"{% url 'dataapp:json' %}");
-		xhttp.onload = function(){
-		var data = JSON.parse(xhttp.responseText);
-		console.log(data);
-		renderHTML(data);
-	};
-	xhttp.send();
 });
 var i=0;
+
+
 
 
 function renderHTML(data){
@@ -57,6 +50,24 @@ function renderHTML(data){
 	}
 	info.insertAdjacentHTML('beforeend' , htmlString);
 }
+setInterval(function(){
+
+// 	function removeElement(htmlString) {
+//     // Removes an element from the document
+//     var element = document.getElementById(htmlString);
+//     element.parentNode.removeChild(element);
+// }
+	htmlString="";
+	var xhttp = new XMLHttpRequest();
+
+	xhttp.open('GET',"{% url 'dataapp:json' %}");
+	xhttp.onload = function(){
+		var data = JSON.parse(xhttp.responseText);
+		console.log(data);
+		renderHTML(data);
+	};
+	xhttp.send();
+},10000);
 
 
 function searchFunction() {

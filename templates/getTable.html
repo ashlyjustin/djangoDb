@@ -33,10 +33,10 @@ btn.addEventListener('click',function() {
 var i=0;
 
 
-
+var htmlString = "";
 
 function renderHTML(data){
-	var htmlString = "";
+	
 
 	for(i=0;i<data.length;i++){
 		htmlString += "<tr><td>" + data[i].fields.timestamp + "</td><td>" + data[i].fields.nodeid + "</td><td>" +data[i].fields.light +"</td><td>" +data[i].fields.temp+"</td></tr>";
@@ -48,16 +48,14 @@ function renderHTML(data){
 		document.getElementById('myInput').style.display='inline';
 
 	}
+	info.innerHTML="";
+
 	info.insertAdjacentHTML('beforeend' , htmlString);
 }
 setInterval(function(){
 
-// 	function removeElement(htmlString) {
-//     // Removes an element from the document
-//     var element = document.getElementById(htmlString);
-//     element.parentNode.removeChild(element);
-// }
-	htmlString="";
+	
+	// $( "info" ).remove();
 	var xhttp = new XMLHttpRequest();
 
 	xhttp.open('GET',"{% url 'dataapp:json' %}");
